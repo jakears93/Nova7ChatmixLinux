@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Reset Pipewire
+systemctl --user restart pipewire.service
+
+#Create Game Mix
+pactl load-module module-null-sink sink_name=GameMix
+pactl load-module module-loopback source=GameMix.monitor sink=alsa_output.usb-SteelSeries_Arctis_Nova_7-00.analog-stereo
+
+#Create Chat Mix
+pactl load-module module-null-sink sink_name=ChatMix
+pactl load-module module-loopback source=ChatMix.monitor sink=alsa_output.usb-SteelSeries_Arctis_Nova_7-00.analog-stereo

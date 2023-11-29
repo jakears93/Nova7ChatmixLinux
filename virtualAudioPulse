@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Reset PulseAudio
+pulseaudio -k
+
+#Create GameMix
+pacmd load-module module-null-sink sink_name=GameMix
+pacmd update-sink-proplist GameMix device.description=GameMix
+pacmd load-module module-loopback source=GameMix.monitor sink=alsa_output.usb-SteelSeries_Arctis_Nova_7-00.iec958-stereo
+
+#Create ChatMix
+pacmd load-module module-null-sink sink_name=ChatMix
+pacmd update-sink-proplist ChatMix device.description=ChatMix
+pacmd load-module module-loopback source=ChatMix.monitor sink=alsa_output.usb-SteelSeries_Arctis_Nova_7-00.iec958-stereo

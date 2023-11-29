@@ -1,0 +1,12 @@
+[Unit]
+Description=ChatMixer for Steelseries Nova 7+
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+ExecStart=/usr/local/bin/nova7Mixer
+
+[Install]
+WantedBy=default.target
+
